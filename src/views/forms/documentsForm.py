@@ -82,7 +82,8 @@ class DocumentsForm(QWidget):
         docs = Database().get_docs_for_category(self.selected_cat_id)
         docs_options = []
         for opt in docs:
-            docs_options.append(opt['doc_name'])
+            if 'doc_name' in opt:
+                docs_options.append(opt['doc_name'])
         self.documents_list = MyListWidget(450, 260, options=docs_options, bg_color="#ffffff", front_color="#445566")
         self.documents_list.listRightClicked.connect(self.delete_doc)
         self.documents_list.clicked[str].connect(self.document_selected)
@@ -171,7 +172,8 @@ class DocumentsForm(QWidget):
             docs = Database().get_docs_for_category(self.selected_cat_id)
         docs_options = []
         for opt in docs:
-            docs_options.append(opt['doc_name'])
+            if 'doc_name' in opt:
+                docs_options.append(opt['doc_name'])
         self.documents_list.only_update_options(docs_options)
         self.reset_inputs()
 
